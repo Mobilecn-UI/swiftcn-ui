@@ -7,16 +7,27 @@
 
 import SwiftUI
 
-// TODO: pass SF Symbols icon as optional param
+// FEAT: pass placeholder color as optional property
+// TODO: add disabled option
 struct CustomInput: View {
     @Binding var text: String
-    var placeholder: String
+    var iconName: String?
+    var placeholder: String?
 
-    // TODO: make placeholder light/dark grey
-    // See https://stackoverflow.com/a/57715771
     var body: some View {
-        TextField("", text: $text)
-            .inputBoxStyle()
+        HStack {
+            if let iconName = iconName {
+                Image(systemName: iconName)
+                    .foregroundColor(.gray)
+                    .padding(.trailing, 2)
+            }
+
+            TextField("", text: $text)
+                .placeholder(when: text.isEmpty) {
+                    Text(placeholder ?? "").foregroundColor(.gray)
+                }
+                .inputBoxStyle()
+        }
     }
 }
 
@@ -30,8 +41,7 @@ struct InputBoxModifier: ViewModifier {
             .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
             .cornerRadius(8)
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.gray, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1)
             )
     }
 }
@@ -39,5 +49,17 @@ struct InputBoxModifier: ViewModifier {
 extension View {
     func inputBoxStyle() -> some View {
         self.modifier(InputBoxModifier())
+    }
+    
+    // Credits to https://stackoverflow.com/a/57715771
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content
+    ) -> some View {
+        ZStack(alignment: alignment) {
+            placeholder().opacity(shouldShow ? 1 : 0)
+            self
+        }
     }
 }

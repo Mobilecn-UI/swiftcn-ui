@@ -3,24 +3,26 @@ import SwiftUI
 struct ContentView: View {
     @State private var inputText: String = ""
 
-       var body: some View {
-           VStack(spacing: 20) {
-               CustomButton(action: {
-                   print("Button tapped!")
-               }, label: "Button")
+    var body: some View {
+        VStack(spacing: 20) {
+           CustomButton(action: {
+               print("Button tapped!")
+           }, label: "Button")
 
-               // TODO: pass symbol to input (optional parameter)
-               // NOTE: could move $inputText to Input component
-               CustomInput(text: $inputText, placeholder: "Email")
+           // NOTE: could move $inputText to Input component
+           CustomInput(
+                text: $inputText, iconName: "envelope", placeholder: "Email"
+           )
 
-               CustomAvatar(imageURL: "https://avatars.githubusercontent.com/u/53033648?v=4",
-                                 fallbackText: "FallBack",
-                                 width: 100,
-                                 height: 100,
-                                 fallbackColor: Color.red)
+           CustomAvatar(
+                imageURL: "https://avatars.githubusercontent.com/u/53033648?v=4",
+                fallbackText: "SS",
+                width: 100,
+                height: 100
+           )
 
-               CustomSlider()
-           }
-           .padding(.horizontal, 20)
-       }
+           CustomSlider()
+        }
+        .padding(.horizontal, 20)
+    }
 }
