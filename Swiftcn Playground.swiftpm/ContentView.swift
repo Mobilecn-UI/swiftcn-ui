@@ -22,6 +22,10 @@ struct ContentView: View {
            )
 
            CustomSlider()
+
+           CustomToggle(
+                label: "Toggle me"
+           )
         }
         .padding(.horizontal, 20)
     }
