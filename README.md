@@ -8,9 +8,10 @@ Inspired by [shadcn-ui](https://github.com/shadcn-ui/ui)
 
 Visit [Swiftcn UI](https://swiftcn.mintlify.app/introduction) to get started.
 
-|     X Home - dark mode      |     X Home - light mode      |
-| :-------------------------: | :--------------------------: |
-| ![](assets/X-dark-mode.png) | ![](assets/X-light-mode.png) |
+|         Dark mode         |         Light mode         |
+| :-----------------------: | :------------------------: |
+| ![](assets/home-dark.png) | ![](assets/home-light.png) |
+|  ![](assets/X-dark.png)   |  ![](assets/X-light.png)   |
 
 ## Usage
 
@@ -25,8 +26,9 @@ Visit [Swiftcn UI](https://swiftcn.mintlify.app/introduction) to get started.
 - [x] Button
 - [x] Input
 - [x] Slider
+- [x] Tabs
 - [ ] Badge (WIP)
-- [ ] Tabs
+- [ ] Card (WIP)
 
 ## Examples
 

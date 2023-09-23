@@ -4,8 +4,16 @@ import SwiftUI
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-            //ContentView()
-            XHomeView()
+            TabView {
+                ContentView()
+                    .tabItem {
+                        Label("Examples", systemImage: "scribble.variable")
+                    }
+                XHomeView()
+                    .tabItem {
+                         Label("X Home", systemImage: "x.circle")
+                    }
+            }
         }
     }
 }

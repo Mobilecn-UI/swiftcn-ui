@@ -55,3 +55,14 @@ struct CustomAvatar: View {
             )
     }
 }
+
+struct CustomAvatar_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomAvatar(
+            imageURL: "https://example.com/your-avatar.png",
+            fallbackText: "AB",
+            width: 100,
+            height: 100
+        )
+    }
+}

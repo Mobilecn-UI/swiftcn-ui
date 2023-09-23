@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+// TODO: default underlineColor based on colorScheme
 // TODO: add variants: "default and minimal"
-// TODO: animate selector on selectedTab change
 // TODO: set underline width according to tab key length
+// TODO: animate selector on selectedTab change
 struct CustomTabs: View {
     @Environment(\.colorScheme) var colorScheme
 
@@ -20,7 +21,7 @@ struct CustomTabs: View {
     init(
         selectedTab: Binding<String>,
         tabs: [(String, AnyView)],
-        underlineColor: Color = .white
+        underlineColor: Color = .white // NOTE: this is bad in light mode
     ) {
         self._selectedTab = selectedTab
         self.tabs = tabs
@@ -58,5 +59,27 @@ struct CustomTabs: View {
                 selectedView
             }
         }
+    }
+}
+
+struct CustomTabs_Previews: PreviewProvider {
+    struct PreviewWrapper: View {
+        @State private var selectedTab: String = "Tab A"
+
+        let tabs: [(String, AnyView)] = [
+            ("Tab A", AnyView(Text("Tab A content"))),
+            ("Tab B", AnyView(Text("Tab B content")))
+        ]
+
+        var body: some View {
+            CustomTabs(
+                selectedTab: $selectedTab,
+                tabs: tabs
+            )
+        }
+    }
+
+    static var previews: some View {
+        PreviewWrapper()
     }
 }

@@ -1,40 +1,59 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
     @State private var inputText: String = ""
+    @State private var selectedTab: String = "Tab A"
+
+    let tabs: [(String, AnyView)] = [
+        ("Tab A", AnyView(Text("Tab A content"))),
+        ("Tab B", AnyView(Text("Tab B content")))
+    ]
 
     var body: some View {
-        
         ZStack{
-            
-            DotPattern(dotColor: .black, spacing: 5, brightness: 0.2, backgroundColor: .white  )
-            VStack(spacing: 20) {
-                
-    
-                
-                CustomButton(action: {
-                    print("Button tapped!")
-                }, label: "Button")
-                
-                // NOTE: could move $inputText to Input component
-                CustomInput(
-                    text: $inputText, iconName: "envelope", placeholder: "Email"
-                )
-                
+            DotPattern(
+                dotColor: colorScheme == .dark ? .white : .black,
+                spacing: 5,
+                brightness: 0.2,
+                backgroundColor: colorScheme == .dark ? .black : .white
+            )
+
+            VStack(spacing: 40) {
                 CustomAvatar(
-                    imageURL: "https://avatars.githubusercontent.com/u/53033648?v=4",
-                    fallbackText: "SS",
-                    width: 100,
-                    height: 100
+                    imageURL: "https://pbs.twimg.com/profile_images/1256841238298292232/ycqwaMI2_400x400.jpg",
+                    fallbackText: "AB",
+                    width: 80,
+                    height: 80
                 )
                 
+                CustomTabs(
+                    selectedTab: $selectedTab,
+                    tabs: tabs,
+                    underlineColor: colorScheme == .dark ? .white : .black
+                )
+                
+                HStack {
+                    CustomInput(
+                        text: $inputText, iconName: "envelope", placeholder: "Email"
+                    )
+                    CustomButton(action: {
+                        print("Button tapped!")
+                    }, label: "Button")
+                }
+                
+                CustomToggle(label: "Toggle me")
+
                 CustomSlider()
-                
-                CustomToggle(
-                    label: "Toggle me"
-                )
+
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal)
         }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }

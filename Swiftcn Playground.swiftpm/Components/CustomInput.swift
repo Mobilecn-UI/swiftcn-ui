@@ -63,3 +63,19 @@ extension View {
         }
     }
 }
+
+struct CustomInput_Previews: PreviewProvider {
+    struct PreviewWrapper: View {
+        @State private var inputText: String = ""
+
+        var body: some View {
+            CustomInput(
+                text: $inputText, iconName: "envelope", placeholder: "Email"
+            )
+        }
+    }
+
+    static var previews: some View {
+        PreviewWrapper()
+    }
+}

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// TODO: add confetti option onSubmit
+// TODO: make fontWeight an optional parameter (default to .medium)
 struct CustomButton: View {
     let action: () -> Void
     let label: String
@@ -37,5 +39,13 @@ struct CustomButtonModifier: ViewModifier {
 extension View {
     func customButtonStyle() -> some View {
         self.modifier(CustomButtonModifier())
+    }
+}
+
+struct CustomButton_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomButton(action: {
+            print("Button tapped!")
+        }, label: "Button")
     }
 }

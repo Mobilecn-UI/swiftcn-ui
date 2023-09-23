@@ -3,6 +3,7 @@ import SwiftUI
 struct CustomSlider: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var value: Double = 50
+
     private var range: ClosedRange<Double> = 0...100
 
     var body: some View {
@@ -11,7 +12,6 @@ struct CustomSlider: View {
                 Text("Slider")
             }
             .accentColor(colorScheme == .dark ? .white : .black)
-            .padding(10)
         }
     }
 }
