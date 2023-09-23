@@ -4,6 +4,7 @@ struct DotPattern: View {
     var dotColor: Color = Color.blue
     var spacing: CGFloat = 0
     var brightness: Double = 1.0 // Range from 0.0 to 1.0
+    var backgroundColor: Color = Color.black // Added this line for background color
     
     var body: some View {
         GeometryReader { geometry in
@@ -25,13 +26,13 @@ struct DotPattern: View {
                 }
             }
         }
-        .background(Color.black)
+        .background(backgroundColor)
         .ignoresSafeArea()
     }
 }
 
 struct DotPattern_Previews: PreviewProvider {
     static var previews: some View {
-        DotPattern(dotColor: Color.white, spacing: 15, brightness: 0.5)
+        DotPattern(dotColor: Color.white, spacing: 15, brightness: 0.5, backgroundColor: .black)
     }
 }
