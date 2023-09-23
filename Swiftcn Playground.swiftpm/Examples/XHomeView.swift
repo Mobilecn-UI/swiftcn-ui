@@ -3,7 +3,7 @@ import SwiftUI
 // TODO: center X correctly (right between tabs)
 struct XHomeView: View {
     @Environment(\.colorScheme) var colorScheme
-    
+
     let forYouPosts: [PostView] = [
         PostView(
             avatarURL: "https://avatars.githubusercontent.com/u/46545682?v=4",
@@ -74,7 +74,7 @@ struct XHomeView: View {
     let profilePicFallback = "N"
     let tabs: [(String, AnyView)]
     @State private var selectedTab: String = "For you"
-    
+
     init() {
         self.tabs = [
             ("For you", AnyView(FeedView(posts: forYouPosts))),
@@ -102,53 +102,13 @@ struct XHomeView: View {
                 Spacer()
             }.padding()
 
-            TabsView(selectedTab: $selectedTab, tabs: tabs)
+            CustomTabs(
+                selectedTab: $selectedTab,
+                tabs: tabs,
+                underlineColor: Color(red: 28 / 255, green: 155 / 255, blue: 240 / 255)
+            )
 
             Spacer()
-        }
-    }
-}
-
-// TODO: animate selector on selectedTab change
-// TODO: fix width for Following
-struct TabsView: View {
-    @Environment(\.colorScheme) var colorScheme
-
-    @Binding var selectedTab: String
-    let tabs: [(String, AnyView)]
-
-    let underlineColor = Color(red: 28 / 255, green: 155 / 255, blue: 240 / 255)
-
-    var body: some View {
-        VStack(spacing: 0) {
-            HStack(alignment: .top) {
-                ForEach(tabs, id: \.0) { key, _ in
-                    VStack(spacing: 10) {
-                        Text(key)
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(selectedTab == key ?
-                                             colorScheme == .dark ? .white : .black : .gray)
-                            .onTapGesture {
-                                selectedTab = key
-                            }
-
-                        if selectedTab == key {
-                            RoundedRectangle(cornerRadius: 5)
-                                .frame(width: 59, height: 4)
-                                .foregroundColor(underlineColor)
-                        }
-                    }.frame(maxWidth: .infinity)
-                }
-            }.padding(.horizontal, 9)
-
-            Divider()
-                .background(Color(.systemGray5))
-                .frame(height: 0.7)
-                .padding(.bottom, 10)
-
-            if let selectedView = tabs.first(where: { $0.0 == selectedTab })?.1 {
-                selectedView
-            }
         }
     }
 }
