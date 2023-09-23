@@ -17,7 +17,7 @@ struct PostView: View {
     let likesCount: Int
     let viewsCount: Int
     let imageURL: String?
-    
+
     init(
         avatarURL: String,
         avatarFallback: String,

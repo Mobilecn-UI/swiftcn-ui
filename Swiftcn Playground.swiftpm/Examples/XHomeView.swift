@@ -1,6 +1,5 @@
 import SwiftUI
 
-// TODO: make For you underline color actual blue
 // TODO: center X correctly (right between tabs)
 struct XHomeView: View {
     @Environment(\.colorScheme) var colorScheme
@@ -12,18 +11,18 @@ struct XHomeView: View {
             name: "Carlos",
             handle: "cgarciamoran",
             timestamp: "3m",
-            text: "Introducing Swiftcn UI. Build sleek interfaces using beautiful, intuitive components. Stay tuned 🛝",
+            text: "Introducing Swiftcn UI. Build sleek interfaces using beautiful, intuitive components. Stay tuned! 🛝",
             repliesCount: 1,
             repostsCount: 0,
             likesCount: 3,
-            viewsCount: 700
+            viewsCount: 128
         ),
         PostView(
             avatarURL: "https://avatars.githubusercontent.com/u/53033648?v=4",
             avatarFallback: "SS",
             name: "Suman",
             handle: "0xSuman",
-            timestamp: "3m",
+            timestamp: "1h",
             text: "Really enjoyed talk from @jainarvind and @mamoonha at the @kleinerperkins founders summit",
             repliesCount: 0,
             repostsCount: 1,
@@ -44,9 +43,9 @@ struct XHomeView: View {
             imageURL: "https://pbs.twimg.com/media/Fl2ZEJkaAAAgP4I?format=jpg&name=medium"
         )
     ]
-    let profilePicURL = "https://avatars.githubusercontent.com/u/53033648?v=4"
-    let profilePicFallback = "SS"
 
+    let profilePicURL = "https://pbs.twimg.com/profile_images/1256841238298292232/ycqwaMI2_400x400.jpg"
+    let profilePicFallback = "N"
 
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
@@ -63,7 +62,6 @@ struct XHomeView: View {
 
                 Image(colorScheme == .dark ? "xlogo-white" : "xlogo-black")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30)
 
                 Spacer()
@@ -78,8 +76,8 @@ struct XHomeView: View {
 
                         RoundedRectangle(cornerRadius: 5)
                             .frame(width: 66, height: 4)
-                            .foregroundColor(Color.blue)
-                    }.padding(0)
+                            .foregroundColor(Color(red: 28 / 255, green: 155 / 255, blue: 240 / 255))
+                    }
 
                     Spacer()
 
@@ -90,13 +88,13 @@ struct XHomeView: View {
 
                 Divider()
                     .background(Color(.systemGray5))
-                    .frame(height: 0.9)
+                    .frame(height: 0.7)
             }
 
             // Posts
             ScrollView {
                 VStack (spacing: 15) {
-                    ForEach(posts, id: \.avatarURL) { post in
+                    ForEach(posts, id: \.text) { post in
                         post
                             .padding(.horizontal)
                         Divider()
