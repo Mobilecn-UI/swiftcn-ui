@@ -3,8 +3,8 @@ import SwiftUI
 // TODO: center X correctly (right between tabs)
 struct XHomeView: View {
     @Environment(\.colorScheme) var colorScheme
-
-    let posts: [PostView] = [
+    
+    let forYouPosts: [PostView] = [
         PostView(
             avatarURL: "https://avatars.githubusercontent.com/u/46545682?v=4",
             avatarFallback: "CG",
@@ -43,9 +43,44 @@ struct XHomeView: View {
             imageURL: "https://pbs.twimg.com/media/Fl2ZEJkaAAAgP4I?format=jpg&name=medium"
         )
     ]
+    let followingPosts: [PostView] = [
+        PostView(
+            avatarURL: "https://avatars.githubusercontent.com/u/53033648?v=4",
+            avatarFallback: "SS",
+            name: "Suman",
+            handle: "0xSuman",
+            timestamp: "1h",
+            text: "Very cool esketit.",
+            repliesCount: 4,
+            repostsCount: 5,
+            likesCount: 8,
+            viewsCount: 256
+        ),
+        PostView(
+            avatarURL: "https://avatars.githubusercontent.com/u/46545682?v=4",
+            avatarFallback: "CG",
+            name: "Carlos",
+            handle: "cgarciamoran",
+            timestamp: "3m",
+            text: "Indeed vv cool stuff. Swiftcn be popping",
+            repliesCount: 1,
+            repostsCount: 3,
+            likesCount: 3,
+            viewsCount: 7
+        )
+    ]
 
     let profilePicURL = "https://pbs.twimg.com/profile_images/1256841238298292232/ycqwaMI2_400x400.jpg"
     let profilePicFallback = "N"
+    let tabs: [(String, AnyView)]
+    @State private var selectedTab: String = "For you"
+    
+    init() {
+        self.tabs = [
+            ("For you", AnyView(FeedView(posts: forYouPosts))),
+            ("Following", AnyView(FeedView(posts: followingPosts)))
+        ]
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
@@ -67,44 +102,71 @@ struct XHomeView: View {
                 Spacer()
             }.padding()
 
-            // For you and Following tabs
-            VStack(spacing: 0) {
-                HStack(alignment: .top) {
-                    VStack(spacing: 10) {
-                        Text("For you")
-                            .font(.system(size: 18, weight: .bold, design: .default))
-
-                        RoundedRectangle(cornerRadius: 5)
-                            .frame(width: 66, height: 4)
-                            .foregroundColor(Color(red: 28 / 255, green: 155 / 255, blue: 240 / 255))
-                    }
-
-                    Spacer()
-
-                    Text("Following")
-                        .font(.system(size: 18, weight: .bold, design: .default))
-                        .foregroundColor(Color.gray)
-                }.padding(.horizontal, 70)
-
-                Divider()
-                    .background(Color(.systemGray5))
-                    .frame(height: 0.7)
-            }
-
-            // Posts
-            ScrollView {
-                VStack (spacing: 15) {
-                    ForEach(posts, id: \.text) { post in
-                        post
-                            .padding(.horizontal)
-                        Divider()
-                            .background(Color(.systemGray5))
-                            .frame(height: 0.7)
-                    }
-                }
-            }
+            TabsView(selectedTab: $selectedTab, tabs: tabs)
 
             Spacer()
+        }
+    }
+}
+
+// TODO: animate selector on selectedTab change
+// TODO: fix width for Following
+struct TabsView: View {
+    @Environment(\.colorScheme) var colorScheme
+
+    @Binding var selectedTab: String
+    let tabs: [(String, AnyView)]
+
+    let underlineColor = Color(red: 28 / 255, green: 155 / 255, blue: 240 / 255)
+
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack(alignment: .top) {
+                ForEach(tabs, id: \.0) { key, _ in
+                    VStack(spacing: 10) {
+                        Text(key)
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(selectedTab == key ?
+                                             colorScheme == .dark ? .white : .black : .gray)
+                            .onTapGesture {
+                                selectedTab = key
+                            }
+
+                        if selectedTab == key {
+                            RoundedRectangle(cornerRadius: 5)
+                                .frame(width: 59, height: 4)
+                                .foregroundColor(underlineColor)
+                        }
+                    }.frame(maxWidth: .infinity)
+                }
+            }.padding(.horizontal, 9)
+
+            Divider()
+                .background(Color(.systemGray5))
+                .frame(height: 0.7)
+                .padding(.bottom, 10)
+
+            if let selectedView = tabs.first(where: { $0.0 == selectedTab })?.1 {
+                selectedView
+            }
+        }
+    }
+}
+
+struct FeedView: View {
+    let posts: [PostView]
+    
+    var body: some View {
+        ScrollView {
+            VStack (spacing: 15) {
+                ForEach(posts, id: \.text) { post in
+                    post
+                        .padding(.horizontal)
+                    Divider()
+                        .background(Color(.systemGray5))
+                        .frame(height: 0.7)
+                }
+            }
         }
     }
 }
