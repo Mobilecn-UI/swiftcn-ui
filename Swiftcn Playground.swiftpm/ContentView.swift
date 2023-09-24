@@ -41,11 +41,17 @@ struct ContentView: View {
                         print("Button tapped!")
                     }, label: "Button")
                 }
-                
+
                 CustomToggle(label: "Toggle me")
 
                 CustomSlider()
-
+                
+                HStack {
+                    CustomBadge(label: "Badge")
+                    CustomBadge(label: "Badge", backgroundColor: .green)
+                    CustomBadge(label: "Badge", backgroundColor: .yellow, foregroundColor: .black)
+                    CustomBadge(label: "Badge", backgroundColor: .red)
+                }
             }
             .padding(.horizontal)
         }

@@ -23,11 +23,11 @@ Visit [Swiftcn UI](https://swiftcn.mintlify.app/introduction) to get started.
 ## Components
 
 - [x] Avatar
+- [x] Badge
 - [x] Button
 - [x] Input
 - [x] Slider
 - [x] Tabs
-- [ ] Badge (WIP)
 - [ ] Card (WIP)
 
 ## Examples
