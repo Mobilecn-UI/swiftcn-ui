@@ -31,25 +31,26 @@ struct ShimmerButton: View {
             RoundedRectangle(cornerRadius: borderRadius)
                 .fill(backgroundColor)
                 .frame(height: 60)
+                .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 10) // Adding shadow
             
             // Text
             Text(text)
                 .foregroundColor(textColor)
                 .font(.system(size: textSize))
+                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 5) // Adding shadow
             
             // Shimmer
             GeometryReader { geometry in
                 let rect = geometry.frame(in: .local)
-                Path { path in
-                    path.addRoundedRect(in: rect, cornerSize: CGSize(width: borderRadius, height: borderRadius))
-                }
-                .trim(from: animationProgress, to: animationProgress + 0.1)
-                .stroke(textColor, lineWidth: 3)
-                .onAppear {
-                    withAnimation(Animation.linear(duration: shimmerDuration).repeatForever(autoreverses: false)) {
-                        animationProgress = 1.0
+                Capsule()
+                    .trim(from: animationProgress, to: animationProgress + 0.1)
+                    .stroke(textColor, lineWidth: 4)
+                    .frame(width: rect.width, height: rect.height)
+                    .onAppear {
+                        withAnimation(Animation.linear(duration: shimmerDuration).repeatForever(autoreverses: false)) {
+                            animationProgress = 1.0
+                        }
                     }
-                }
             }
         }
         .frame(width: 200, height: 60)
@@ -58,6 +59,6 @@ struct ShimmerButton: View {
 
 struct ShimmerButton_Previews: PreviewProvider {
     static var previews: some View {
-        ShimmerButton(text: "Post")
+        ShimmerButton(text: "Submit", textSize: 30, backgroundColor: .black, textColor: .white)
     }
 }
