@@ -1,10 +1,3 @@
-//
-//  CustomToggle.swift
-//  
-//
-//  Created by Carlos García Morán on 9/20/23.
-//
-
 import SwiftUI
 
 // TODO: extract toggle color to optional parameter

@@ -1,10 +1,3 @@
-//
-//  Button.swift
-//  Swift Playground
-//
-//  Created by Carlos García Morán on 9/19/23.
-//
-
 import SwiftUI
 
 // TODO: add confetti option onSubmit
@@ -13,32 +6,20 @@ struct CustomButton: View {
     let action: () -> Void
     let label: String
 
+    var backgroundColor: Color?
+    var foregroundColor: Color?
+
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         Button(action: action) {
             Text(label).fontWeight(.medium)
         }
-        .customButtonStyle()
-    }
-}
-
-struct CustomButtonModifier: ViewModifier {
-    @Environment(\.colorScheme) var colorScheme
-
-    func body(content: Content) -> some View {
-        content
-            .padding(.horizontal, 20)
-            .padding(.vertical, 15)
-            .background(colorScheme == .dark ? Color.white : Color.black)
-            .foregroundColor(colorScheme == .dark ? .black : .white)
-            .cornerRadius(8)
-    }
-}
-
-extension View {
-    func customButtonStyle() -> some View {
-        self.modifier(CustomButtonModifier())
+        .padding(.horizontal, 20)
+        .padding(.vertical, 12)
+        .background(backgroundColor ?? (colorScheme == .dark ? .white : .black))
+        .foregroundColor(foregroundColor ?? (colorScheme == .dark ? .black : .white))
+        .cornerRadius(8)
     }
 }
 

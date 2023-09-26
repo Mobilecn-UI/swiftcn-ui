@@ -19,41 +19,100 @@ struct ContentView: View {
                 backgroundColor: colorScheme == .dark ? .black : .white
             )
 
-            VStack(spacing: 40) {
-                CustomAvatar(
-                    imageURL: "https://pbs.twimg.com/profile_images/1256841238298292232/ycqwaMI2_400x400.jpg",
-                    fallbackText: "AB",
-                    width: 80,
-                    height: 80
-                )
-                
-                CustomTabs(
-                    selectedTab: $selectedTab,
-                    tabs: tabs,
-                    underlineColor: colorScheme == .dark ? .white : .black
-                )
-                
-                HStack {
-                    CustomInput(
-                        text: $inputText, iconName: "envelope", placeholder: "Email"
-                    )
-                    CustomButton(action: {
-                        print("Button tapped!")
-                    }, label: "Button")
-                }
+            ScrollView {
+                VStack(alignment: .leading, spacing: 30) {
+                    Text("swiftcn-ui").font(.title).fontWeight(.medium).underline()
+                    
+                    VStack(alignment: .leading, spacing: 30) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Avatar").font(.title2).fontWeight(.medium)
+                            
+                            HStack {
+                                Spacer()
+                                CustomAvatar(
+                                    imageURL: "https://pbs.twimg.com/profile_images/1706762093876453376/_d_KcNjw_400x400.jpg",
+                                    fallbackText: "CGM",
+                                    width: 70,
+                                    height: 70
+                                )
+                                CustomAvatar(
+                                    imageURL: "https://pbs.twimg.com/profile_images/1603610343905058816/PsPEWMOJ_400x400.jpg",
+                                    fallbackText: "SS",
+                                    width: 70,
+                                    height: 70
+                                )
+                                Spacer()
+                            }
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Badge")
+                                .font(.title2).fontWeight(.medium)
+                            
+                            HStack {
+                                CustomBadge(label: "Badge")
+                                CustomBadge(label: "Badge", backgroundColor: .green)
+                                CustomBadge(label: "Badge", backgroundColor: .yellow, foregroundColor: .black)
+                                CustomBadge(label: "Badge", backgroundColor: .red)
+                            }
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Button")
+                                .font(.title2).fontWeight(.medium)
+                            
+                            HStack {
+                                CustomButton(
+                                    action: { print("Button tapped!") },
+                                    label: "Button"
+                                )
+                                CustomButton(
+                                    action: { print("Button tapped!") },
+                                    label: "Button",
+                                    backgroundColor: .gray
+                                )
+                                CustomButton(
+                                    action: { print("Button tapped!") },
+                                    label: "Button",
+                                    backgroundColor: .red
+                                )
+                            }
+                        }
 
-                CustomToggle(label: "Toggle me")
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Input").font(.title2).fontWeight(.medium)
+                            
+                            CustomInput(
+                                text: $inputText, iconName: "envelope", placeholder: "Email"
+                            )
+                        }
 
-                CustomSlider()
-                
-                HStack {
-                    CustomBadge(label: "Badge")
-                    CustomBadge(label: "Badge", backgroundColor: .green)
-                    CustomBadge(label: "Badge", backgroundColor: .yellow, foregroundColor: .black)
-                    CustomBadge(label: "Badge", backgroundColor: .red)
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Slider").font(.title2).fontWeight(.medium)
+
+                            CustomSlider()
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Tabs").font(.title2).fontWeight(.medium)
+                            
+                            CustomTabs(
+                                selectedTab: $selectedTab,
+                                tabs: tabs,
+                                underlineColor: colorScheme == .dark ? .white : .black
+                            )
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Toggle")
+                                .font(.title2).fontWeight(.medium)
+
+                            CustomToggle(label: "Toggle me")
+                        }
+                    }
                 }
+                .padding(.horizontal, 40)
             }
-            .padding(.horizontal)
         }
     }
 }

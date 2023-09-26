@@ -1,10 +1,3 @@
-//
-//  CustomToggle.swift
-//  
-//
-//  Created by Carlos García Morán on 9/23/23.
-//
-
 import SwiftUI
 
 struct CustomBadge: View {

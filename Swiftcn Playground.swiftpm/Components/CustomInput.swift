@@ -1,10 +1,3 @@
-//
-//  CustomInput.swift
-//  Swift Playground
-//
-//  Created by Carlos García Morán on 9/19/23.
-//
-
 import SwiftUI
 
 // FEAT: pass placeholder color as optional property
