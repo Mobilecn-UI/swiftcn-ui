@@ -27,11 +27,15 @@ You can also run the playground locally:
 - [x] Avatar
 - [x] Badge
 - [x] Button
+- [x] Card
 - [x] Input
 - [x] Slider
 - [x] Tabs
-- [ ] Card (WIP)
+- [x] Toggle
 - [ ] Calendar (WIP)
+- [ ] Progress (WIP)
+- [ ] Skeleton (WIP)
+- [ ] Textarea (WIP)
 
 ## Examples
 

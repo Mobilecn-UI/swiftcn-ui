@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct CustomBadge: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     var label: String
     var backgroundColor: Color?
     var foregroundColor: Color?
@@ -11,9 +13,9 @@ struct CustomBadge: View {
             .fontWeight(.semibold)
             .padding(.vertical, 4)
             .padding(.horizontal, 8)
-            .background(backgroundColor ?? .blue)
-            .foregroundColor(foregroundColor ?? .white)
-            .cornerRadius(8)
+            .background(backgroundColor ?? .primary)
+            .foregroundColor(foregroundColor ?? (colorScheme == .dark ? .black : .white))
+            .cornerRadius(30)
     }
 }
 

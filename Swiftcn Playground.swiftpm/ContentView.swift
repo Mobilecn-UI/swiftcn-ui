@@ -26,7 +26,6 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 30) {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Avatar").font(.title2).fontWeight(.medium)
-                            
                             HStack {
                                 Spacer()
                                 CustomAvatar(
@@ -44,23 +43,20 @@ struct ContentView: View {
                                 Spacer()
                             }
                         }
-                        
+
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("Badge")
-                                .font(.title2).fontWeight(.medium)
-                            
+                            Text("Badge").font(.title2).fontWeight(.medium)
                             HStack {
                                 CustomBadge(label: "Badge")
-                                CustomBadge(label: "Badge", backgroundColor: .green)
-                                CustomBadge(label: "Badge", backgroundColor: .yellow, foregroundColor: .black)
+                                CustomBadge(label: "Badge", backgroundColor: .gray)
                                 CustomBadge(label: "Badge", backgroundColor: .red)
+                                CustomBadge(label: "Badge", backgroundColor: .yellow)
+                                CustomBadge(label: "Badge", backgroundColor: .green)
                             }
                         }
-                        
+
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("Button")
-                                .font(.title2).fontWeight(.medium)
-                            
+                            Text("Button").font(.title2).fontWeight(.medium)
                             HStack {
                                 CustomButton(
                                     action: { print("Button tapped!") },
@@ -80,8 +76,17 @@ struct ContentView: View {
                         }
 
                         VStack(alignment: .leading, spacing: 10) {
+                            Text("Card").font(.title2).fontWeight(.medium)
+                            CustomCard(
+                                title: "Accelerate UI",
+                                description: "Enter a new development experience",
+                                content: "Sleek, easy to use components to build your next iOS app faster. No install, no bs.",
+                                footer: "Inspired by shadcn/ui"
+                            )
+                        }
+
+                        VStack(alignment: .leading, spacing: 10) {
                             Text("Input").font(.title2).fontWeight(.medium)
-                            
                             CustomInput(
                                 text: $inputText, iconName: "envelope", placeholder: "Email"
                             )
@@ -89,13 +94,11 @@ struct ContentView: View {
 
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Slider").font(.title2).fontWeight(.medium)
-
                             CustomSlider()
                         }
                         
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Tabs").font(.title2).fontWeight(.medium)
-                            
                             CustomTabs(
                                 selectedTab: $selectedTab,
                                 tabs: tabs,
@@ -104,9 +107,7 @@ struct ContentView: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("Toggle")
-                                .font(.title2).fontWeight(.medium)
-
+                            Text("Toggle").font(.title2).fontWeight(.medium)
                             CustomToggle(label: "Toggle me")
                         }
                     }

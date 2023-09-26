@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct CustomAvatar: View {
+    @Environment(\.colorScheme) var colorScheme
+
     let imageURL: String
     let fallbackText: String
     let fallbackBgColor: Color
@@ -52,6 +54,10 @@ struct CustomAvatar: View {
                     .foregroundColor(fallbackFgColor)
                     .minimumScaleFactor(0.5) // Allows the text to scale down if needed
                     .padding()
+            )
+            .overlay(
+                Circle()
+                    .stroke(colorScheme == .dark ? .white : .black, lineWidth: 2)
             )
     }
 }

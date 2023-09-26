@@ -17,7 +17,7 @@ struct CustomButton: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
-        .background(backgroundColor ?? (colorScheme == .dark ? .white : .black))
+        .background(backgroundColor ?? .primary)
         .foregroundColor(foregroundColor ?? (colorScheme == .dark ? .black : .white))
         .cornerRadius(8)
     }
