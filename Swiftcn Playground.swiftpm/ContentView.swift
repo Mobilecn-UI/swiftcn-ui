@@ -86,7 +86,7 @@ struct ContentView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Input").font(.title2).fontWeight(.medium)
                             CustomInput(
-                                text: $inputText, iconName: "envelope", placeholder: "Email"
+                                text: $inputText, label: "Email", iconName: "envelope"
                             )
                         }
 
@@ -108,7 +108,7 @@ struct ContentView: View {
                                 underlineColor: colorScheme == .dark ? .white : .black
                             )
                         }
-                        
+
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Toggle").font(.title2).fontWeight(.medium)
                             CustomToggle(label: "Toggle me")

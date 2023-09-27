@@ -1,11 +1,12 @@
 import SwiftUI
 
-// FEAT: pass placeholder color as optional property
-// TODO: add disabled option
 struct CustomInput: View {
     @Binding var text: String
+    var label: String
     var iconName: String?
-    var placeholder: String?
+    var isDisabled: Bool = false
+    var placeholder: String = ""
+    var placeholderColor: Color = .gray
 
     var body: some View {
         HStack {
@@ -15,10 +16,11 @@ struct CustomInput: View {
                     .padding(.trailing, 2)
             }
 
-            TextField("", text: $text)
+            TextField(label, text: $text)
                 .placeholder(when: text.isEmpty) {
-                    Text(placeholder ?? "").foregroundColor(.gray)
+                    Text(placeholder).foregroundColor(placeholderColor)
                 }
+                .disabled(isDisabled)
                 .inputBoxStyle()
         }
     }
@@ -29,12 +31,14 @@ struct InputBoxModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
-            .background(colorScheme == .dark ? Color.white : Color.black)
-            .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+            .background(colorScheme == .dark ? .black : .white)
             .cornerRadius(8)
+            .foregroundColor(.primary)
             .overlay(
-                RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 8).stroke(.gray, lineWidth: 1)
+            )
+            .padding(
+                EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14)
             )
     }
 }
@@ -43,7 +47,7 @@ extension View {
     func inputBoxStyle() -> some View {
         self.modifier(InputBoxModifier())
     }
-    
+
     // Credits to https://stackoverflow.com/a/57715771
     func placeholder<Content: View>(
         when shouldShow: Bool,
@@ -63,7 +67,10 @@ struct CustomInput_Previews: PreviewProvider {
 
         var body: some View {
             CustomInput(
-                text: $inputText, iconName: "envelope", placeholder: "Email"
+                text: $inputText,
+                label: "Email",
+                iconName: "envelope",
+                placeholder: "Email"
             )
         }
     }
