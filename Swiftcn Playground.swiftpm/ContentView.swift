@@ -50,7 +50,6 @@ struct ContentView: View {
                                 CustomBadge(label: "Badge")
                                 CustomBadge(label: "Badge", backgroundColor: .gray)
                                 CustomBadge(label: "Badge", backgroundColor: .red)
-                                CustomBadge(label: "Badge", backgroundColor: .yellow)
                                 CustomBadge(label: "Badge", backgroundColor: .green)
                             }
                         }
@@ -90,6 +89,12 @@ struct ContentView: View {
                             CustomInput(
                                 text: $inputText, iconName: "envelope", placeholder: "Email"
                             )
+                        }
+
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Progress").font(.title2).fontWeight(.medium)
+                            CustomProgress(value: 0.5)
+                            CustomProgress(value: 0.75, tint: .green)
                         }
 
                         VStack(alignment: .leading, spacing: 10) {

@@ -29,11 +29,11 @@ You can also run the playground locally:
 - [x] Button
 - [x] Card
 - [x] Input
+- [x] Progress
 - [x] Slider
 - [x] Tabs
 - [x] Toggle
 - [ ] Calendar (WIP)
-- [ ] Progress (WIP)
 - [ ] Skeleton (WIP)
 - [ ] Textarea (WIP)
 
