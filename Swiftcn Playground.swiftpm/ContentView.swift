@@ -13,16 +13,14 @@ struct ContentView: View {
     var body: some View {
         ZStack{
             DotPattern(
-                dotColor: colorScheme == .dark ? .white : .black,
-                spacing: 5,
-                brightness: 0.2,
-                backgroundColor: colorScheme == .dark ? .black : .white
+                backgroundColor: colorScheme == .dark ? .black : .white,
+                opacity: 0.2
             )
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 30) {
                     Text("swiftcn-ui").font(.title).fontWeight(.medium).underline()
-                    
+
                     VStack(alignment: .leading, spacing: 30) {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Avatar").font(.title2).fontWeight(.medium)
