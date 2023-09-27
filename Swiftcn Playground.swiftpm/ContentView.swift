@@ -4,6 +4,7 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var inputText: String = ""
     @State private var selectedTab: String = "Tab A"
+    @State private var sliderValue: Double = 50
 
     let tabs: [(String, AnyView)] = [
         ("Tab A", AnyView(Text("Tab A content"))),
@@ -91,15 +92,14 @@ struct ContentView: View {
 
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Progress").font(.title2).fontWeight(.medium)
-                            CustomProgress(value: 0.5)
                             CustomProgress(value: 0.75, tint: .green)
                         }
 
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Slider").font(.title2).fontWeight(.medium)
-                            CustomSlider()
+                            CustomSlider(value: $sliderValue, accentColor: .yellow, showLabels: true)
                         }
-                        
+
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Tabs").font(.title2).fontWeight(.medium)
                             CustomTabs(

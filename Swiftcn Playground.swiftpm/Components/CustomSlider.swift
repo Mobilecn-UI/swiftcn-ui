@@ -1,23 +1,36 @@
 import SwiftUI
 
 struct CustomSlider: View {
-    @Environment(\.colorScheme) var colorScheme
-    @State private var value: Double = 50
+    @Binding var value: Double
 
-    private var range: ClosedRange<Double> = 0...100
+    var accentColor: Color = .primary
+    var range: ClosedRange<Double> = 0...100
+    var showLabels: Bool = false
 
     var body: some View {
-        VStack {
-            Slider(value: $value, in: range) {
+        Slider(
+            value: $value,
+            in: range
+        ) {
+            if showLabels {
                 Text("Slider")
             }
-            .accentColor(colorScheme == .dark ? .white : .black)
-        }
+        } minimumValueLabel: {
+            if showLabels {
+                Text("\(Int(range.lowerBound))")
+            }
+        } maximumValueLabel: {
+            if showLabels {
+                Text("\(Int(range.upperBound))")
+            }
+        }.accentColor(accentColor)
     }
 }
 
 struct SliderComponent_Previews: PreviewProvider {
+    @State static var value: Double = 50
+
     static var previews: some View {
-        CustomSlider()
+        CustomSlider(value: $value)
     }
 }
