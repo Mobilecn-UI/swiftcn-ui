@@ -34,11 +34,11 @@ struct InputBoxModifier: ViewModifier {
             .background(colorScheme == .dark ? .black : .white)
             .cornerRadius(8)
             .foregroundColor(.primary)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8).stroke(.gray, lineWidth: 1)
-            )
             .padding(
                 EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 8).stroke(.gray, lineWidth: 1)
             )
     }
 }
