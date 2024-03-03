@@ -1,10 +1,9 @@
 # swiftcn-ui | Swift playground
 
-swiftcn-ui is a comprehensive library of components to **build beautiful iOS apps, fast**.
+Comprehensive library of SwiftUI components to build beautiful iOS apps, fast. No package install, no bs. Inspired by [shadcn-ui](https://github.com/shadcn-ui/ui).
 
-Sleek, ready-to-use components for your next SwiftUI project. No package install, no bs.
-
-Inspired by [shadcn-ui](https://github.com/shadcn-ui/ui).
+> [!NOTE]
+> We are looking for a maintainer for this repository. If you are interested, please reach out!
 
 |          Dark mode           |          Light mode           |
 | :--------------------------: | :---------------------------: |
