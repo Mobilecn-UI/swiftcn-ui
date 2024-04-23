@@ -86,8 +86,16 @@ struct ContentView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Input").font(.title2).fontWeight(.medium)
                             CustomInput(
-                                text: $inputText, label: "Email", iconName: "envelope"
+                                value: $inputText, label: "Email", iconName: "envelope"
                             )
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Text Editor").font(.title2).fontWeight(.medium)
+                            CustomTextEditor(
+                                value: $inputText, iconName: "square.and.pencil",
+                                placeholder: "Text Editor"
+                            ).frame(minHeight: 150)
                         }
 
                         VStack(alignment: .leading, spacing: 10) {
