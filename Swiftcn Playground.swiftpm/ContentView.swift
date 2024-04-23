@@ -3,6 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var inputText: String = ""
+    @State private var inputTextEditor: String = ""
     @State private var selectedTab: String = "Tab A"
     @State private var sliderValue: Double = 50
 
@@ -93,8 +94,7 @@ struct ContentView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Text Editor").font(.title2).fontWeight(.medium)
                             CustomTextEditor(
-                                value: $inputText, iconName: "square.and.pencil",
-                                placeholder: "Text Editor"
+                                value: $inputTextEditor, iconName: "square.and.pencil"
                             ).frame(minHeight: 150)
                         }
 

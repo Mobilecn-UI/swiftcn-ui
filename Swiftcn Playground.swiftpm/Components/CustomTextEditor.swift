@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Devin Smaldore on 4/23/24.
-//
-
 import SwiftUI
 
 struct CustomTextEditor<Value: InputConvertible>: View {
@@ -39,8 +32,7 @@ struct CustomTextEditor<Value: InputConvertible>: View {
                         value = newValue
                     }
                 }
-                .keyboardType(.default)
-                .placeholder(when: text.isEmpty, alignment: .topLeading) {
+                .placeholder(when: text.isEmpty) {
                     Text(placeholder).foregroundColor(placeholderColor)
                 }
                 .disabled(isDisabled)
